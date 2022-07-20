@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe MerchantDisbursementsGenerator do
     before(:each) do
         @mock = double('merchant')
-        end
+    end
     describe ".generate_disbursements" do
 
         it "gets merchant orders" do
@@ -12,11 +12,11 @@ RSpec.describe MerchantDisbursementsGenerator do
         disbursements = double
         disbursement = double
 
-        allow(@mock).to receive(:disbursements).and_return(disbursements)
+        allow(@mock).to receive(:disbursement).and_return(disbursements)
         allow(disbursements).to receive(:any?).and_yield(disbursement).and_return(false)
         allow(disbursement).to receive(:week)
 
-        expect(@mock).to receive(:orders).and_return([order])
+        expect(@mock).to receive(:order).and_return([order])
         MerchantDisbursementsGenerator.generate_disbursements(@mock, week) 
         end
        
@@ -42,7 +42,7 @@ RSpec.describe MerchantDisbursementsGenerator do
             it "raises error" do
                 orders = double
                 week = 3
-                allow(@mock).to receive(:orders).and_return(orders)
+                allow(@mock).to receive(:order).and_return(orders)
                 allow(orders).to receive(:size).and_return(0)
                 expect{
                     MerchantDisbursementsGenerator.generate_disbursements(@mock, week)
@@ -60,7 +60,7 @@ RSpec.describe MerchantDisbursementsGenerator do
                 disbursement = double
                 disbursements = double
 
-                allow(@mock).to receive(:orders).and_return(orders)
+                allow(@mock).to receive(:order).and_return(orders)
                 allow(orders).to receive(:size).and_return(1)
                 allow(orders).to receive(:select).and_yield(order).and_return(disbursement_orders)
                 allow(order).to receive(:amount).and_return(amt)
@@ -74,7 +74,7 @@ RSpec.describe MerchantDisbursementsGenerator do
 
                 allow(@mock).to receive(:id)
 
-                allow(@mock).to receive(:disbursements).and_return(disbursements)
+                allow(@mock).to receive(:disbursement).and_return(disbursements)
                 allow(disbursements).to receive(:any?).and_yield(disbursement).and_return(false)
                 allow(disbursement).to receive(:week)
 
@@ -100,7 +100,7 @@ RSpec.describe MerchantDisbursementsGenerator do
                 disbursement = double
                 disbursements = double
 
-                allow(@mock).to receive(:orders).and_return(orders)
+                allow(@mock).to receive(:order).and_return(orders)
                 allow(orders).to receive(:size).and_return(1)
                 allow(orders).to receive(:select).and_yield(order).and_return(disbursement_orders)
                 allow(order).to receive(:amount).and_return(amt)
@@ -114,7 +114,7 @@ RSpec.describe MerchantDisbursementsGenerator do
 
                 allow(@mock).to receive(:id)
 
-                allow(@mock).to receive(:disbursements).and_return(disbursements)
+                allow(@mock).to receive(:disbursement).and_return(disbursements)
                 allow(disbursements).to receive(:any?).and_yield(disbursement).and_return(false)
                 allow(disbursement).to receive(:week)
 
@@ -138,13 +138,13 @@ RSpec.describe MerchantDisbursementsGenerator do
                 disbursement = double
                 disbursements = double
 
-                allow(@mock).to receive(:orders).and_return(orders)
+                allow(@mock).to receive(:order).and_return(orders)
                 allow(orders).to receive(:size).and_return(1)
                 allow(orders).to receive(:select).and_yield(order).and_return(disbursement_orders)
         
                 allow(disbursement_orders).to receive(:size).and_return(0)
 
-                allow(@mock).to receive(:disbursements).and_return(disbursements)
+                allow(@mock).to receive(:disbursement).and_return(disbursements)
                 allow(disbursements).to receive(:any?).and_yield(disbursement).and_return(false)
                 allow(disbursement).to receive(:week)
     
@@ -160,10 +160,10 @@ RSpec.describe MerchantDisbursementsGenerator do
                 disbursements = double
                 disbursement = double
 
-                allow(@mock).to receive(:orders).and_return(orders)
+                allow(@mock).to receive(:order).and_return(orders)
                 allow(orders).to receive(:size).and_return(1)
 
-                allow(@mock).to receive(:disbursements).and_return(disbursements)
+                allow(@mock).to receive(:disbursement).and_return(disbursements)
                 allow(disbursements).to receive(:any?).and_yield(disbursement).and_return(true)
                 allow(disbursement).to receive(:week)
 

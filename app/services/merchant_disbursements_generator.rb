@@ -5,13 +5,13 @@ class MerchantDisbursementsGenerator
             valid_week = !(week<=0) && week <= Time.now.strftime("%-V").to_i  
             raise StandardError, 'invalid week' unless valid_week
 
-            merchant_orders = merchant.orders
+            merchant_orders = merchant.order
 
             if merchant_orders.size == 0
                 raise StandardError, "no order(s) to disburse for merchant"
             end
 
-            if merchant.disbursements.any?{|d| d.week == week}
+            if merchant.disbursement.any?{|d| d.week == week}
                 raise StandardError, "disbursements already processed for week: #{week}"
             end
 
@@ -47,7 +47,7 @@ class MerchantDisbursementsGenerator
         def calculate_fee_and_disbursement(order)
             fee = (1.to_d/100.to_d)*order.amount if order.amount < 50.to_d
             fee = (0.85.to_d/100.to_d)*order.amount if order.amount > 300.to_d
-            fee = (0.95.to_d/100.to_d)*order.amount if order.amount >= 50.to_d && order.amoumt <= 300.to_d
+            fee = (0.95.to_d/100.to_d)*order.amount if order.amount >= 50.to_d && order.amount <= 300.to_d
 
             disbursed_amt = order.amount-fee
 
