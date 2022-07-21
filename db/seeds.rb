@@ -54,7 +54,7 @@ end
 def create_disbursements()
     Merchant.all.each do |m|
         Timecop.travel(Time.parse("2022-07-18 04:17:36")) do 
-            week = rand(1..52)
+            week = (1..52).to_a.sample
             MerchantDisbursementsGenerator.generate_disbursements(m, week)
         end
     end

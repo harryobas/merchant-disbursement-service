@@ -11,7 +11,7 @@ RSpec.describe DisbursementQueryProcessor do
                 time = double
 
                 allow(merchant).to receive(:present?).and_return(true)
-                allow(merchant).to receive(:disbursements).and_return(disbursements)
+                allow(merchant).to receive(:disbursement).and_return(disbursements)
                 allow(disbursements).to receive(:select).and_yield(disbursement)
                 allow(disbursement).to receive(:week)
                 

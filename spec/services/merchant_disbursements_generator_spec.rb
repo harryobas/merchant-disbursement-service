@@ -30,10 +30,17 @@ RSpec.describe MerchantDisbursementsGenerator do
             expect{
                 MerchantDisbursementsGenerator.generate_disbursements(@mock, -5)
         }.to raise_error(StandardError)
+        end 
+
+        it "raises error if week > 52" do
+            expect{
+                MerchantDisbursementsGenerator.generate_disbursements(@mock, 55)
+        }.to raise_error(StandardError)
         end
 
         context 'merchant orders list is empty' do
             it "raises error" do
+               
                 orders = double
                 week = 3
                 allow(@mock).to receive(:order).and_return(orders)
@@ -168,5 +175,6 @@ RSpec.describe MerchantDisbursementsGenerator do
         end
     
     end
- 
 end
+ 
+
