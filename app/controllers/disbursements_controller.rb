@@ -1,7 +1,7 @@
 class DisbursementsController < ApplicationController
     def search
-        if params[:id].present?
-            merchant = Merchant.find_by!(id: params[:id]) 
+        if params[:merchant_id].present?
+            merchant = Merchant.find_by!(id: params[:merchant_id]) 
             week = params[:week].to_i
             disbursements = DisbursementQueryProcessor(merchant, week)
             json_response(disbursements)

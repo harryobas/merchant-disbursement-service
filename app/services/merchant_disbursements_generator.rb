@@ -2,7 +2,7 @@ class MerchantDisbursementsGenerator
 
     class << self
         def generate_disbursements(merchant, week)
-            valid_week = !(week<=0) && week <= Time.now.strftime("%-V").to_i  
+            valid_week = !(week<=0)  
             raise StandardError, 'invalid week' unless valid_week
 
             merchant_orders = merchant.order

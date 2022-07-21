@@ -19,7 +19,7 @@ RSpec.describe "Disbursements", type: :request do
       merchant_id: merchant.id 
       )
       
-      params = {id: merchant.id, week: 13}
+      params = {merchant_id: merchant.id, week: 13}
     
       get "/disbursements/search", params: params
       expect(JSON.parse(response.body).size).to eq 1
@@ -27,7 +27,7 @@ RSpec.describe "Disbursements", type: :request do
   end
   context "search without merchant" do
     it "returns all disbursements for given week" do
-      params = {id: "", week: 10}
+      params = {merchant_id: "", week: 10}
 
       merchant =  Merchant.create(
       name: Faker::Company.name,

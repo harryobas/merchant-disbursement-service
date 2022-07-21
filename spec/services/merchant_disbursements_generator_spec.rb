@@ -32,12 +32,6 @@ RSpec.describe MerchantDisbursementsGenerator do
         }.to raise_error(StandardError)
         end
 
-        it "raises error if week is greater than current week" do
-            week = Time.now.strftime("%-V").to_i+3 
-            expect{
-                MerchantDisbursementsGenerator.generate_disbursements(@mock, week)
-        }.to raise_error(StandardError)
-        end
         context 'merchant orders list is empty' do
             it "raises error" do
                 orders = double
